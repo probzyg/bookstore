@@ -12,7 +12,7 @@ public class DataSourceConfiguration {
     public DataSource getDatabaseDataSource() {
         return DataSourceBuilder.create()
                 .driverClassName("org.postgresql.Driver")
-                .url("jdbc:postgresql://localhost:5432/bookstore")
+                .url("jdbc:postgresql://localhost:5432/postgres")
                 .username("postgres")
                 .password("docker")
                 .build();
