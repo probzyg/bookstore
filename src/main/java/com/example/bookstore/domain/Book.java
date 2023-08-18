@@ -6,6 +6,8 @@ import jakarta.persistence.Id;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.time.LocalDateTime;
+
 @Entity
 @Getter
 @Setter
@@ -17,7 +19,10 @@ public class Book {
     private String authorName;
     @Column(name = "genre")
     private String genre;
+    @Column(name = "created_at")
+    private LocalDateTime createdAt;
 
     public Book() {
+        this.createdAt = LocalDateTime.now();
     }
 }
