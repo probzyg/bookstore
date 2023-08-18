@@ -40,6 +40,6 @@ public class BookstoreDatabaseService {
     public Page<Book> getBooksByPage(int pageNumber, int pageSize) {
         int adjustedPage = pageNumber - 1;
         Pageable pageable = PageRequest.of(adjustedPage, pageSize);
-        return this.bookDatabaseRepository.findAllByOrderByCreatedAtDesc(pageable);;
+        return this.bookDatabaseRepository.findAllByOrderByCreatedAtDesc(pageable);
     }
 }
