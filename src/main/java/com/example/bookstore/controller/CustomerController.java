@@ -1,13 +1,9 @@
 package com.example.bookstore.controller;
 
-import com.example.bookstore.domain.Book;
 import com.example.bookstore.dto.BookResponseDTO;
 import com.example.bookstore.service.BookstoreDatabaseService;
-import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.List;
 
 @RestController
 @RequestMapping
