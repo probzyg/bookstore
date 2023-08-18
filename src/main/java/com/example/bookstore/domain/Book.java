@@ -11,8 +11,8 @@ import lombok.Setter;
 @Setter
 public class Book {
     @Id
-    @Column(name = "book_name")
-    private String bookName;
+    @Column(name = "title")
+    private String title;
     @Column(name = "author_name")
     private String authorName;
     @Column(name = "genre")
