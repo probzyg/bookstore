@@ -7,6 +7,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 
+import java.util.List;
+
 @Service
 public class BookstoreDatabaseService {
     private final BookDatabaseRepository bookDatabaseRepository;
@@ -30,5 +32,9 @@ public class BookstoreDatabaseService {
         newBook.setAuthorName(addBookRequest.getAuthorName());
         newBook.setGenre(addBookRequest.getGenre());
         return newBook;
+    }
+
+    public List<Book> fetchAllBooks() {
+        return this.bookDatabaseRepository.findAll();
     }
 }
