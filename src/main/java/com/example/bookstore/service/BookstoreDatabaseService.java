@@ -3,6 +3,9 @@ package com.example.bookstore.service;
 import com.example.bookstore.domain.Book;
 import com.example.bookstore.repository.BookDatabaseRepository;
 import com.example.bookstore.request.AddBookRequest;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
@@ -34,7 +37,9 @@ public class BookstoreDatabaseService {
         return newBook;
     }
 
-    public List<Book> fetchAllBooks() {
-        return this.bookDatabaseRepository.findAll();
+    public Page<Book> getBooksByPage(int pageNumber, int pageSize) {
+        int adjustedPage = pageNumber - 1;
+        Pageable pageable = PageRequest.of(adjustedPage, pageSize);
+        return this.bookDatabaseRepository.findAllByOrderByCreatedAtDesc(pageable);;
     }
 }

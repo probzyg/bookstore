@@ -2,11 +2,9 @@ package com.example.bookstore.controller;
 
 import com.example.bookstore.domain.Book;
 import com.example.bookstore.service.BookstoreDatabaseService;
+import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseStatus;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -21,7 +19,8 @@ public class CustomerController {
 
     @GetMapping("/main")
     @ResponseStatus(HttpStatus.OK)
-    public List<Book> fetchAllBooks() {
-        return this.bookstoreDatabaseService.fetchAllBooks();
+    public Page<Book> getBooksByPage(@RequestParam(name = "page", defaultValue = "1") int page,
+                                     @RequestParam(name = "size", defaultValue = "50") int size) {
+        return this.bookstoreDatabaseService.getBooksByPage(page, size);
     }
 }
