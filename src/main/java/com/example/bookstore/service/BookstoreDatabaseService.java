@@ -1,6 +1,7 @@
 package com.example.bookstore.service;
 
 import com.example.bookstore.domain.Book;
+import com.example.bookstore.dto.BookResponseDTO;
 import com.example.bookstore.repository.BookDatabaseRepository;
 import com.example.bookstore.request.AddBookRequest;
 import org.springframework.data.domain.Page;
@@ -37,9 +38,10 @@ public class BookstoreDatabaseService {
         return newBook;
     }
 
-    public Page<Book> getBooksByPage(int pageNumber, int pageSize) {
+    public BookResponseDTO getBooksByPage(int pageNumber, int pageSize) {
         int adjustedPage = pageNumber - 1;
         Pageable pageable = PageRequest.of(adjustedPage, pageSize);
-        return this.bookDatabaseRepository.findAllByOrderByCreatedAtDesc(pageable);
+        Page<Book> page = this.bookDatabaseRepository.findAllByOrderByCreatedAtDesc(pageable);
+        return new BookResponseDTO(page.getContent());
     }
 }

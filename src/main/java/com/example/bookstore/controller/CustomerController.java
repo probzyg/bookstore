@@ -1,6 +1,7 @@
 package com.example.bookstore.controller;
 
 import com.example.bookstore.domain.Book;
+import com.example.bookstore.dto.BookResponseDTO;
 import com.example.bookstore.service.BookstoreDatabaseService;
 import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
@@ -19,8 +20,8 @@ public class CustomerController {
 
     @GetMapping("/main")
     @ResponseStatus(HttpStatus.OK)
-    public Page<Book> getBooksByPage(@RequestParam(name = "page", defaultValue = "1") int page,
-                                     @RequestParam(name = "size", defaultValue = "50") int size) {
+    public BookResponseDTO getBooksByPage(@RequestParam(name = "page", defaultValue = "1") int page,
+                                          @RequestParam(name = "size", defaultValue = "50") int size) {
         return this.bookstoreDatabaseService.getBooksByPage(page, size);
     }
 }
