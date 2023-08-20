@@ -2,6 +2,7 @@ package com.example.bookstore.controller;
 
 import com.example.bookstore.domain.Book;
 import com.example.bookstore.request.AddBookRequest;
+import com.example.bookstore.request.UpdatePriceRequest;
 import com.example.bookstore.service.BookstoreDatabaseService;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
@@ -43,10 +44,24 @@ public class AdminController {
         }
     }
 
-    @PutMapping("/add-price")
+    @GetMapping("/update-price")
+    public String showUpdatePricePage(Model model) {
+        model.addAttribute("updatePriceRequest", new UpdatePriceRequest());
+        return "update-price";
+    }
+
+    @PostMapping("/update-price")
     @ResponseStatus(HttpStatus.OK)
-    public Book addPriceToBook(@RequestBody String title,
-                               @RequestBody BigDecimal price) {
-        return this.bookstoreDatabaseService.addPriceToBook(title, price);
+    public String addPriceToBook(@ModelAttribute UpdatePriceRequest updatePriceRequest, Model model) {
+        try {
+            Book updatedBook = bookstoreDatabaseService.addPriceToBook(updatePriceRequest);
+            model.addAttribute("updatedBook", updatedBook);
+            return "price-updated";
+        } catch (ResponseStatusException e) {
+            if (e.getStatusCode() == HttpStatus.NOT_FOUND) {
+                return "book-conflict";
+            }
+            throw e;
+        }
     }
 }
