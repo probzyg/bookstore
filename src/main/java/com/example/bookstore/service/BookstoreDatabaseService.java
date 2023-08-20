@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.server.ResponseStatusException;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 @Service
@@ -52,5 +53,18 @@ public class BookstoreDatabaseService {
         int adjustedPage = pageNumber - 1;
         Pageable pageable = PageRequest.of(adjustedPage, pageSize);
         return this.bookDatabaseRepository.findAllByOrderByCreatedAtDesc(pageable);
+    }
+
+    @Transactional
+    public Book addPriceToBook(String bookTitle, BigDecimal price) {
+        Book existingBook = bookDatabaseRepository.findBookByTitle(bookTitle);
+
+        if (existingBook != null) {
+            existingBook.setPrice(price);
+            bookDatabaseRepository.save(existingBook);
+            return existingBook;
+        } else {
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "The book was not found in our database");
+        }
     }
 }
