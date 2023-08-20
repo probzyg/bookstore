@@ -15,10 +15,10 @@ Description of choices:
 
 1)I decided to create this WEB application on Spring Boot, because:
 
-> It provides a flexibility in Java Bean, XML configurations, and Database Transactions
-> It includes Servlet Container 
-> Spring Boot is globally one of the most popular ways of building REST API
-> It injects dependencies automatically 
+- It provides a flexibility in Java Bean, XML configurations, and Database Transactions
+- It includes Servlet Container 
+- Spring Boot is globally one of the most popular ways of building REST API
+- It injects dependencies automatically 
 
 2)I decided to go with DDD (Domain Driven Design), because it is a major software design approach. 
 It's easy to understand and read.
@@ -27,13 +27,13 @@ It's easy to understand and read.
 
 ##8.2 Possible risks
 
-> You mentioned that the system should handle 10 parallel user sessions per second. 
+- You mentioned that the system should handle 10 parallel user sessions per second. 
 Make sure that there are no bottlenecks that could lead to poor performance under heavy load.
 
-> While you've stated that the main page load time cannot exceed 2 seconds, this requirement 
+- While you've stated that the main page load time cannot exceed 2 seconds, this requirement 
 might become challenging to maintain as the number of books increases.
 
-> If the chosen technology stack becomes outdated or unsupported, it could lead to compatibility and security issues in the long run.
+- If the chosen technology stack becomes outdated or unsupported, it could lead to compatibility and security issues in the long run.
 
 ##8.4 Setup Guide:
 
