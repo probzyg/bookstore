@@ -7,7 +7,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("/admin-api")
 public class AdminController {
     private final BookstoreDatabaseService bookstoreDatabaseService;
 
@@ -15,7 +14,7 @@ public class AdminController {
         this.bookstoreDatabaseService = bookstoreDatabaseService;
     }
 
-    @PutMapping("/books")
+    @PutMapping("/add-book")
     @ResponseStatus(HttpStatus.CREATED)
     public Book addBook(@RequestBody AddBookRequest addBookRequest) {
         return bookstoreDatabaseService.addBook(addBookRequest);

@@ -14,7 +14,7 @@ public class SecurityConfiguration {
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http.httpBasic(withDefaults())
                 .authorizeHttpRequests((authorize) -> authorize
-                        .requestMatchers("/admin-api/books").authenticated()
+                        .requestMatchers("/add-books").authenticated()
                         .anyRequest().permitAll());
 
         http.csrf(AbstractHttpConfigurer::disable);
