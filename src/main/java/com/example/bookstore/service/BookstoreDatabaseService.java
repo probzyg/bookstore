@@ -25,7 +25,7 @@ public class BookstoreDatabaseService {
     public synchronized Book addBook(AddBookRequest addBookRequest) {
         Book newBook = createBook(addBookRequest);
         if (this.bookDatabaseRepository.findBookByTitle(newBook.getTitle()) != null) {
-            throw new ResponseStatusException(HttpStatus.CONFLICT);
+            throw new ResponseStatusException(HttpStatus.CONFLICT, "This book already exists");
         }
         this.bookDatabaseRepository.save(newBook);
         return newBook;
