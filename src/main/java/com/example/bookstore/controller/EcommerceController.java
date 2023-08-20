@@ -30,7 +30,7 @@ public class EcommerceController {
 
     @GetMapping("/api")
     @ResponseBody
-    public List<BookDTO> getBookWithNameAndPriceREST() {
+    public List<BookDTO> getBookWithNameAndPriceJSON() {
         return this.bookstoreDatabaseService.getAllBookWithPrices();
     }
 }
