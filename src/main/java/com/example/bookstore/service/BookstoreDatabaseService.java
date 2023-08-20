@@ -42,14 +42,6 @@ public class BookstoreDatabaseService {
     }
 
     @Transactional(readOnly = true)
-    public List<Book> getBooksByPage(int pageNumber, int pageSize) {
-        int adjustedPage = pageNumber - 1;
-        Pageable pageable = PageRequest.of(adjustedPage, pageSize);
-        Page<Book> page = this.bookDatabaseRepository.findAllByOrderByCreatedAtDesc(pageable);
-        return page.getContent();
-    }
-
-    @Transactional(readOnly = true)
     public Page<Book> getBookPage(int pageNumber, int pageSize) {
         int adjustedPage = pageNumber - 1;
         Pageable pageable = PageRequest.of(adjustedPage, pageSize);
