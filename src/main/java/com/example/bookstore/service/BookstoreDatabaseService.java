@@ -40,10 +40,7 @@ public class BookstoreDatabaseService {
         String title = addBookRequest.getTitle().trim();
         String authorName = addBookRequest.getAuthorName().trim();
         String genre = addBookRequest.getGenre().trim();
-        if (title.equals("") || authorName.equals("") || genre.equals("")) {
-            return true;
-        }
-        return false;
+        return title.equals("") || authorName.equals("") || genre.equals("");
     }
 
     private Book createBook(AddBookRequest addBookRequest) {
