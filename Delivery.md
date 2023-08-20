@@ -2,14 +2,7 @@
 
 ##8.1
 
-UI is created using Thymeleaf, for returning to the main code, without Thymeleaf:
-
-```bash
-git reset --hard 13814ceeee68f4f3e580a2be95a6e97c9ffc2b68
-```
-
-or look here - [Commit without Thymeleaf files](https://github.com/probzyg/bookstore/tree/13814ceeee68f4f3e580a2be95a6e97c9ffc2b68)
-
+UI is created using Thymeleaf, it contains all neccessary buttons and input fields.
 
 Description of choices:
 
@@ -37,4 +30,4 @@ might become challenging to maintain as the number of books increases.
 
 ##8.4 Setup Guide:
 
-You can find Setup Guide at README.md file in root folder.
+You can find Setup Guide at [README.md file.](https://github.com/probzyg/bookstore/blob/main/README.md)
