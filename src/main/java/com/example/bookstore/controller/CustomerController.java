@@ -1,9 +1,11 @@
 package com.example.bookstore.controller;
 
-import com.example.bookstore.dto.BookResponseDTO;
+import com.example.bookstore.domain.Book;
 import com.example.bookstore.service.BookstoreDatabaseService;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequestMapping
@@ -16,8 +18,8 @@ public class CustomerController {
 
     @GetMapping
     @ResponseStatus(HttpStatus.OK)
-    public BookResponseDTO getBooksByPage(@RequestParam(name = "page", defaultValue = "1") int page,
-                                          @RequestParam(name = "size", defaultValue = "50") int size) {
+    public List<Book> getBooksByPage(@RequestParam(name = "page", defaultValue = "1") int page,
+                                     @RequestParam(name = "size", defaultValue = "50") int size) {
         return this.bookstoreDatabaseService.getBooksByPage(page, size);
     }
 }

@@ -1,7 +1,6 @@
 package com.example.bookstore.service;
 
 import com.example.bookstore.domain.Book;
-import com.example.bookstore.dto.BookResponseDTO;
 import com.example.bookstore.repository.BookDatabaseRepository;
 import com.example.bookstore.request.AddBookRequest;
 import org.springframework.data.domain.Page;
@@ -11,6 +10,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.server.ResponseStatusException;
+
+import java.util.List;
 
 @Service
 public class BookstoreDatabaseService {
@@ -39,10 +40,10 @@ public class BookstoreDatabaseService {
     }
 
     @Transactional(readOnly = true)
-    public BookResponseDTO getBooksByPage(int pageNumber, int pageSize) {
+    public List<Book> getBooksByPage(int pageNumber, int pageSize) {
         int adjustedPage = pageNumber - 1;
         Pageable pageable = PageRequest.of(adjustedPage, pageSize);
         Page<Book> page = this.bookDatabaseRepository.findAllByOrderByCreatedAtDesc(pageable);
-        return new BookResponseDTO(page.getContent());
+        return page.getContent();
     }
 }
