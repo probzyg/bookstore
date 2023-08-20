@@ -21,7 +21,7 @@ public class CustomerController {
     public String showBookList(@RequestParam(name = "page", defaultValue = "1") int page,
                                @RequestParam(name = "size", defaultValue = "50") int size,
                                Model model) {
-        List<Book> books = bookstoreDatabaseService.getBooksByPage(page, size);
+        List<Book> books = bookstoreDatabaseService.getBookPage(page, size).getContent();
         model.addAttribute("books", books);
 
         Page<Book> bookPage = bookstoreDatabaseService.getBookPage(page, size);
