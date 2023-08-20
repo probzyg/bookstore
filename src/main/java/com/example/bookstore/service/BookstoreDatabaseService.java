@@ -1,6 +1,7 @@
 package com.example.bookstore.service;
 
 import com.example.bookstore.domain.Book;
+import com.example.bookstore.dto.BookDTO;
 import com.example.bookstore.repository.BookDatabaseRepository;
 import com.example.bookstore.request.AddBookRequest;
 import org.springframework.data.domain.Page;
@@ -53,6 +54,14 @@ public class BookstoreDatabaseService {
         int adjustedPage = pageNumber - 1;
         Pageable pageable = PageRequest.of(adjustedPage, pageSize);
         return this.bookDatabaseRepository.findAllByOrderByCreatedAtDesc(pageable);
+    }
+
+    @Transactional(readOnly = true)
+    public List<BookDTO> getAllBookWithPrices(int pageNumber, int pageSize) {
+        int adjustedPage = pageNumber - 1;
+        Pageable pageable = PageRequest.of(adjustedPage, pageSize);
+        Page<BookDTO> page = this.bookDatabaseRepository.findAllBookWithPrices(pageable);
+        return page.getContent();
     }
 
     @Transactional
