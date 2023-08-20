@@ -97,11 +97,11 @@ http://localhost:8080?page=2&size=25
 
 
 At http://localhost:8080/add-book - 
->you need to authenticate using login "probzyg" and password "Password123"
-> it returns html file to add books where you can input necessary data into input fields
-> then press button "Add Book" and it adds the written book to Bookstore database. 
-> After the book is added, the code returns another html file, where is written that the book has been added and the title of the book. 
+- you need to authenticate using login "probzyg" and password "Password123"
+- it returns html file to add books where you can input necessary data into input fields
+- then press button "Add Book" and it adds the written book to Bookstore database. 
+- After the book is added, the code returns another html file, where is written that the book has been added and the title of the book. 
 Also, there is a button to redirect to add-book url. 
-> If the book is already in DB the code returns html file with description and button to return to http://localhost:8080/add-book
-> If you leave one or more input field empty - it return html file "Bad request" and redirection button to http://localhost:8080/add-book
->Also, you can be redirected to this url by pressing button "Add Book" at http://localhost:8080
+- If the book is already in DB the code returns html file with description and button to return to http://localhost:8080/add-book
+- If you leave one or more input field empty - it return html file "Bad request" and redirection button to http://localhost:8080/add-book
+- Also, you can be redirected to this url by pressing button "Add Book" at http://localhost:8080
