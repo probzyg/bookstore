@@ -14,7 +14,7 @@ public class CustomerController {
         this.bookstoreDatabaseService = bookstoreDatabaseService;
     }
 
-    @GetMapping("/main")
+    @GetMapping
     @ResponseStatus(HttpStatus.OK)
     public BookResponseDTO getBooksByPage(@RequestParam(name = "page", defaultValue = "1") int page,
                                           @RequestParam(name = "size", defaultValue = "50") int size) {
