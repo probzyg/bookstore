@@ -1,0 +1,11 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Book Conflict</title>
+</head>
+<body>
+<h1>Book Conflict</h1>
+<p>Book with title <span th:text="${bookTitle}"></span> already exists in the database.</p>
+<button onclick="window.location.href='/add-book'">Try again</button>
+</body>
+</html>
