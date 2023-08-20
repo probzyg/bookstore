@@ -2,14 +2,15 @@ package com.example.bookstore.controller;
 
 import com.example.bookstore.dto.BookDTO;
 import com.example.bookstore.service.BookstoreDatabaseService;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+
 
 import java.util.List;
 
-@RestController
+@Controller
 @RequestMapping("/e-com")
 public class EcommerceController {
     private final BookstoreDatabaseService bookstoreDatabaseService;
