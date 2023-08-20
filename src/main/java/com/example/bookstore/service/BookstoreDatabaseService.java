@@ -4,6 +4,7 @@ import com.example.bookstore.domain.Book;
 import com.example.bookstore.dto.BookDTO;
 import com.example.bookstore.repository.BookDatabaseRepository;
 import com.example.bookstore.request.AddBookRequest;
+import com.example.bookstore.request.UpdatePriceRequest;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
@@ -50,7 +51,7 @@ public class BookstoreDatabaseService {
         if (!price.equals("")) {
             newBook.setPrice(new BigDecimal(price));
         }
-        
+
         newBook.setTitle(addBookRequest.getTitle());
         newBook.setAuthorName(addBookRequest.getAuthorName());
         newBook.setGenre(addBookRequest.getGenre());
@@ -76,11 +77,11 @@ public class BookstoreDatabaseService {
     }
 
     @Transactional
-    public Book addPriceToBook(String bookTitle, BigDecimal price) {
-        Book existingBook = bookDatabaseRepository.findBookByTitle(bookTitle);
+    public Book addPriceToBook(UpdatePriceRequest updatePriceRequest) {
+        Book existingBook = bookDatabaseRepository.findBookByTitle(updatePriceRequest.getTitle());
 
         if (existingBook != null) {
-            existingBook.setPrice(price);
+            existingBook.setPrice(new BigDecimal(updatePriceRequest.getPrice()));
             bookDatabaseRepository.save(existingBook);
             return existingBook;
         } else {
