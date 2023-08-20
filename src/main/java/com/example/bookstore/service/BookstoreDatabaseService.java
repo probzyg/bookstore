@@ -60,20 +60,14 @@ public class BookstoreDatabaseService {
 
     @Transactional(readOnly = true)
     public Page<Book> getBookPage(int pageNumber, int pageSize) {
-        Pageable pageable = createPageable(pageNumber, pageSize);
+        int adjustedPage = pageNumber - 1;
+        Pageable pageable = PageRequest.of(adjustedPage, pageSize);
         return this.bookDatabaseRepository.findAllByOrderByCreatedAtDesc(pageable);
     }
 
     @Transactional(readOnly = true)
-    public List<BookDTO> getAllBookWithPrices(int pageNumber, int pageSize) {
-        Pageable pageable = createPageable(pageNumber, pageSize);
-        Page<BookDTO> page = this.bookDatabaseRepository.findAllBookWithPrices(pageable);
-        return page.getContent();
-    }
-
-    private Pageable createPageable(int pageNumber, int pageSize) {
-        int adjustedPage = pageNumber - 1;
-        return PageRequest.of(adjustedPage, pageSize);
+    public List<BookDTO> getAllBookWithPrices() {
+        return this.bookDatabaseRepository.findAllBookWithPrices();
     }
 
     @Transactional
