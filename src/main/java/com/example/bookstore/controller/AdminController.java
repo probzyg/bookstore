@@ -33,8 +33,13 @@ public class AdminController {
             model.addAttribute("newBook", newBook);
             return "book-added";
         } catch (ResponseStatusException e) {
-            model.addAttribute("bookTitle", addBookRequest.getTitle());
-            return "book-conflict";
+            if (e.getStatusCode() == HttpStatus.CONFLICT) {
+                model.addAttribute("bookTitle", addBookRequest.getTitle());
+                return "book-conflict";
+            } else if (e.getStatusCode() == HttpStatus.BAD_REQUEST) {
+                return "bad-request";
+            }
+            throw new RuntimeException("Something went terribly wrong!");
         }
     }
 
