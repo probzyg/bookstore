@@ -10,8 +10,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 
-import java.math.BigDecimal;
-
 @Controller
 public class AdminController {
     private final BookstoreDatabaseService bookstoreDatabaseService;
