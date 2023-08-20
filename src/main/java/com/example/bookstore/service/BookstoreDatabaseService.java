@@ -48,6 +48,12 @@ public class BookstoreDatabaseService {
 
     private Book createBook(AddBookRequest addBookRequest) {
         Book newBook = new Book();
+
+        String price = addBookRequest.getPrice().trim();
+        if (!price.equals("")) {
+            newBook.setPrice(new BigDecimal(price));
+        }
+        
         newBook.setTitle(addBookRequest.getTitle());
         newBook.setAuthorName(addBookRequest.getAuthorName());
         newBook.setGenre(addBookRequest.getGenre());
