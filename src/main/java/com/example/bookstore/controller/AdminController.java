@@ -9,6 +9,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 
+import java.math.BigDecimal;
+
 @Controller
 public class AdminController {
     private final BookstoreDatabaseService bookstoreDatabaseService;
@@ -34,5 +36,12 @@ public class AdminController {
             model.addAttribute("bookTitle", addBookRequest.getTitle());
             return "book-conflict";
         }
+    }
+
+    @PutMapping("/add-price")
+    @ResponseStatus(HttpStatus.OK)
+    public Book addPriceToBook(@RequestBody String title,
+                               @RequestBody BigDecimal price) {
+        return this.bookstoreDatabaseService.addPriceToBook(title, price);
     }
 }
