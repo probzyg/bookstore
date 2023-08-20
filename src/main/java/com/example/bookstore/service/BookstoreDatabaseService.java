@@ -29,8 +29,21 @@ public class BookstoreDatabaseService {
         if (this.bookDatabaseRepository.findBookByTitle(newBook.getTitle()) != null) {
             throw new ResponseStatusException(HttpStatus.CONFLICT, "This book already exists");
         }
+        if (validateRequest(addBookRequest)) {
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "The values can't be blank!");
+        }
         this.bookDatabaseRepository.save(newBook);
         return newBook;
+    }
+
+    private boolean validateRequest(AddBookRequest addBookRequest) {
+        String title = addBookRequest.getTitle().trim();
+        String authorName = addBookRequest.getAuthorName().trim();
+        String genre = addBookRequest.getGenre().trim();
+        if (title == null || authorName == null || genre == null) {
+            return false;
+        }
+        return true;
     }
 
     private Book createBook(AddBookRequest addBookRequest) {
