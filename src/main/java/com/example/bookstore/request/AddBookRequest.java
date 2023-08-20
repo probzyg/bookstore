@@ -11,7 +11,7 @@ public class AddBookRequest {
     private String title;
     private String authorName;
     private String genre;
-    private BigDecimal price;
+    private String price;
 
     public AddBookRequest() {
     }
