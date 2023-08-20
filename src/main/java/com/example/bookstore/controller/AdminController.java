@@ -7,6 +7,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.server.ResponseStatusException;
 
 @Controller
 public class AdminController {
@@ -25,8 +26,13 @@ public class AdminController {
     @PostMapping("/add-book")
     @ResponseStatus(HttpStatus.CREATED)
     public String addBook(@ModelAttribute AddBookRequest addBookRequest, Model model) {
-        Book newBook = bookstoreDatabaseService.addBook(addBookRequest);
-        model.addAttribute("newBook", newBook);
-        return "book-added";
+        try {
+            Book newBook = bookstoreDatabaseService.addBook(addBookRequest);
+            model.addAttribute("newBook", newBook);
+            return "book-added";
+        } catch (ResponseStatusException e) {
+            model.addAttribute("bookTitle", addBookRequest.getTitle());
+            return "book-conflict";
+        }
     }
 }
