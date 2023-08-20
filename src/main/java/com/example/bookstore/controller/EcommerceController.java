@@ -7,6 +7,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 
 import java.util.List;
@@ -21,11 +22,15 @@ public class EcommerceController {
     }
 
     @GetMapping
-    public String getBooksWithNameAndPrice(@RequestParam(name = "page", defaultValue = "1") int page,
-                                           @RequestParam(name = "size", defaultValue = "50") int size,
-                                           Model model) {
-        List<BookDTO> bookDTOs = this.bookstoreDatabaseService.getAllBookWithPrices(page, size);
+    public String getBooksWithNameAndPrice(Model model) {
+        List<BookDTO> bookDTOs = this.bookstoreDatabaseService.getAllBookWithPrices();
         model.addAttribute("books", bookDTOs);
         return "ecom-books";
+    }
+
+    @GetMapping("/api")
+    @ResponseBody
+    public List<BookDTO> getBookWithNameAndPriceREST() {
+        return this.bookstoreDatabaseService.getAllBookWithPrices();
     }
 }
