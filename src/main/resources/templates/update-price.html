@@ -5,15 +5,10 @@
 </head>
 <body>
 <h1>Update Book Price</h1>
-<form method="put" th:action="@{/add-price}">
-    <label for="title">Book Title: </label>
-    <input type="text" id="title" name="title" required/><br/>
-
-    <label for="price">New Price: </label>
-    <input type="text" id="price" name="price" required/><br/>
-
+<form method="post" th:action="@{/update-price}" th:object="${updatePriceRequest}">
+    <label>Title: <input type="text" th:field="*{title}" /></label><br/>
+    <label>New Price: <input type="text" th:field="*{price}" /></label><br/>
     <button type="submit">Update Price</button>
-    <button onclick="window.location.href='/add-book'">Add Book</button>
 </form>
 </body>
 </html>
