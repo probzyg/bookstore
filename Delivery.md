@@ -2,7 +2,7 @@
 
 ##8.1
 
-UI is created using Thymeleaf, it contains all neccessary buttons and input fields.
+UI is created using Thymeleaf, it contains all necessary buttons and input fields.
 
 Description of choices:
 
