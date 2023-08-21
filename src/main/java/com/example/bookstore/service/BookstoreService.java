@@ -40,9 +40,9 @@ public class BookstoreService {
     private Book createBook(AddBookRequest addBookRequest) {
         Book newBook = new Book();
 
-        String price = addBookRequest.getPrice().trim();
-        if (!price.equals("")) {
-            newBook.setPrice(new BigDecimal(price));
+        if (addBookRequest.getPrice() != null) {
+            BigDecimal price = addBookRequest.getPrice();
+            newBook.setPrice(price);
         }
 
         newBook.setTitle(addBookRequest.getTitle());
