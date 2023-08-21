@@ -28,4 +28,12 @@ public class Book {
     public Book() {
         this.createdAt = LocalDateTime.now();
     }
+
+    public Book(String title, String authorName, String genre, BigDecimal price) {
+        this.title = title;
+        this.authorName = authorName;
+        this.genre = genre;
+        this.price = price;
+        this.createdAt = LocalDateTime.now();
+    }
 }
