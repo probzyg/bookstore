@@ -13,4 +13,14 @@ public class AddBookRequest {
 
     public AddBookRequest() {
     }
+
+    public boolean isValid() {
+        String trimmedTitle = title != null ? title.trim() : null;
+        String trimmedAuthorName = authorName != null ? authorName.trim() : null;
+        String trimmedGenre = genre != null ? genre.trim() : null;
+
+        return !(trimmedTitle == null || trimmedTitle.isEmpty() ||
+                trimmedAuthorName == null || trimmedAuthorName.isEmpty() ||
+                trimmedGenre == null || trimmedGenre.isEmpty());
+    }
 }
