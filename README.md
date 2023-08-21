@@ -91,3 +91,9 @@ Also, there is a button to redirect to add-book url.
 - If the book is already in DB the code returns html file with description and button to return to http://localhost:8080/add-book
 - If you leave one or more input field empty - it return html file "Bad request" and redirection button to http://localhost:8080/add-book
 - Also, you can be redirected to this url by pressing button "Add Book" at http://localhost:8080
+
+
+At http://localhost:8080/e-com: 
+- you can get the list of book entities for Ecommerce platforms, containing only titles of the books and prices.
+- There is an api endpoint, that returns JSON data the same way - containing only price and the title of the book. 
+You can find it at http://localhost:8080/e-com/api
