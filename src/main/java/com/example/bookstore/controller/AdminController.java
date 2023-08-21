@@ -49,7 +49,6 @@ public class AdminController {
     }
 
     @PostMapping("/update-price")
-    @ResponseStatus(HttpStatus.OK)
     public String addPriceToBook(@ModelAttribute UpdatePriceRequest updatePriceRequest, Model model) {
         try {
             Book updatedBook = bookstoreDatabaseService.addPriceToBook(updatePriceRequest);
