@@ -1,14 +1,14 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-<head>
-    <title>Update Book Price</title>
-</head>
-<body>
-<h1>Update Book Price</h1>
-<form method="post" th:action="@{/update-price}" th:object="${updatePriceRequest}">
-    <label>Title: <input type="text" th:field="*{title}" /></label><br/>
-    <label>New Price: <input type="text" th:field="*{price}" /></label><br/>
-    <button type="submit">Update Price</button>
-</form>
-</body>
+    <head>
+        <title>Update Book Price</title>
+    </head>
+    <body>
+        <h1>Update Book Price</h1>
+        <form method="post" th:action="@{/update-price}" th:object="${updatePriceRequest}">
+            <label>Title: <input type="text" th:field="*{title}" /></label><br/>
+            <label>New Price: <input type="text" th:field="*{price}" /></label><br/>
+            <button type="submit">Update Price</button>
+        </form>
+    </body>
 </html>

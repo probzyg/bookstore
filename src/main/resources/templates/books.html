@@ -1,46 +1,46 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-<head>
-    <title>Book List</title>
-    <button onclick="window.location.href='/add-book'">Add Book</button>
-    <button onclick="window.location.href='/update-price'">Update Price</button>
-    <button onclick="window.location.href='/e-com'">Ecommerce books list</button>
-</head>
-<body>
-<h1>Book List</h1>
-<label for="pageSize">Books Per Page:</label>
-<select id="pageSize" name="size" onchange="changePageSize(this)">
-    <option value="5" th:selected="${pageInfo.size == 5}">5</option>
-    <option value="50" th:selected="${pageInfo.size == 50}">50</option>
-    <option value="75" th:selected="${pageInfo.size == 75}">75</option>
-    <option value="100" th:selected="${pageInfo.size == 100}">100</option>
-</select>
-<form id="pageSizeForm" th:method="get" th:action="@{/}" th:object="${pageInfo}">
-    <table>
-        <thead>
-        <tr>
-            <th>Title</th>
-            <th>Author</th>
-            <th>Genre</th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr th:each="book : ${books}">
-            <td th:text="${book.title}"></td>
-            <td th:text="${book.authorName}"></td>
-            <td th:text="${book.genre}"></td>
-        </tr>
-        </tbody>
-    </table>
-</form>
+    <head>
+        <title>Book List</title>
+        <button onclick="window.location.href='/add-book'">Add Book</button>
+        <button onclick="window.location.href='/update-price'">Update Price</button>
+        <button onclick="window.location.href='/e-com'">Ecommerce books list</button>
+    </head>
+    <body>
+        <h1>Book List</h1>
+        <label for="pageSize">Books Per Page:</label>
+        <select id="pageSize" name="size" onchange="changePageSize(this)">
+            <option value="5" th:selected="${pageInfo.size == 5}">5</option>
+            <option value="50" th:selected="${pageInfo.size == 50}">50</option>
+            <option value="75" th:selected="${pageInfo.size == 75}">75</option>
+            <option value="100" th:selected="${pageInfo.size == 100}">100</option>
+        </select>
+        <form id="pageSizeForm" th:method="get" th:action="@{/}" th:object="${pageInfo}">
+            <table>
+                <thead>
+                <tr>
+                    <th>Title</th>
+                    <th>Author</th>
+                    <th>Genre</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="book : ${books}">
+                    <td th:text="${book.title}"></td>
+                    <td th:text="${book.authorName}"></td>
+                    <td th:text="${book.genre}"></td>
+                </tr>
+                </tbody>
+            </table>
+        </form>
 
-<div th:if="${pageInfo.totalPages > 1}">
-    <div class="pagination">
-            <span th:each="pageNumber : ${#numbers.sequence(1, pageInfo.totalPages)}"
-                  th:classappend="${page == pageNumber} ? 'active' : ''">
-                <a th:href="@{/(page=${pageNumber})}" th:text="${pageNumber}"></a>
-            </span>
-    </div>
-</div>
-</body>
+        <div th:if="${pageInfo.totalPages > 1}">
+            <div class="pagination">
+                    <span th:each="pageNumber : ${#numbers.sequence(1, pageInfo.totalPages)}"
+                          th:classappend="${page == pageNumber} ? 'active' : ''">
+                        <a th:href="@{/(page=${pageNumber})}" th:text="${pageNumber}"></a>
+                    </span>
+            </div>
+        </div>
+    </body>
 </html>

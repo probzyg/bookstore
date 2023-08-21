@@ -1,13 +1,13 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-<head>
-    <title>Price Updated</title>
-</head>
-<body>
-<h1>Price Updated</h1>
-<p>The price of the book has been updated successfully!</p>
-<p>Title: <span th:text="${updatedBook.title}"></span></p>
-<p>New Price: <span th:text="${updatedBook.price}"></span></p>
-<button onclick="window.location.href='/update-price'">Update another Price</button>
-</body>
+    <head>
+        <title>Price Updated</title>
+    </head>
+    <body>
+        <h1>Price Updated</h1>
+        <p>The price of the book has been updated successfully!</p>
+        <p>Title: <span th:text="${updatedBook.title}"></span></p>
+        <p>New Price: <span th:text="${updatedBook.price}"></span></p>
+        <button onclick="window.location.href='/update-price'">Update another Price</button>
+    </body>
 </html>
