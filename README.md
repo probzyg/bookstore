@@ -24,7 +24,7 @@ Download and install Docker application for Windows:
 [Docker](https://desktop.docker.com/win/main/amd64/Docker%20Desktop%20Installer.exe?utm_source=docker&utm_medium=webreferral&utm_campaign=dd-smartbutton&utm_location=module)
 
 
-Create PostgreSQL database in Docker applicatgion, using PowerShell/CMD:
+Create PostgreSQL database in Docker application, using PowerShell/CMD:
 
 ```bash
 docker run --name bookstore -e POSTGRES_PASSWORD=docker -p 5432:5432 -d postgres
@@ -34,20 +34,6 @@ Clone the repository locally:
 
 ```bash
 git clone git@github.com:probzyg/bookstore.git
-```
-
-To launch release v.1.0 you need to change the branch to release_v.1.0, to do that:
-
-1. Get to your directory in PowerShell/CMD, where the cloned project is stored, by using:
-
-```bash
-cd /directory-name
-```
-
-2. Use this command to change the branch to release_v.1.0:
-
-```bash
-git checkout release_v.1.0
 ```
 
 Open the project in IDE - I'm using IntelliJ IDEA 2023.1.5, selecting root folder bookstore through File->Open...
