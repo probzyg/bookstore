@@ -28,7 +28,9 @@ public class AdminController {
 
     @PostMapping("/add-book")
     @ResponseStatus(HttpStatus.CREATED)
-    public String addBook(@ModelAttribute @Valid AddBookRequest addBookRequest, BindingResult bindingResult, Model model) {
+    public String addBook(@ModelAttribute @Valid AddBookRequest addBookRequest,
+                          BindingResult bindingResult,
+                          Model model) {
         if (bindingResult.hasErrors()) {
             return "price-not-valid"; // Return to the add book form with validation errors
         }
@@ -55,9 +57,14 @@ public class AdminController {
     }
 
     @PostMapping("/update-price")
-    public String addPriceToBook(@ModelAttribute UpdatePriceRequest updatePriceRequest, Model model) {
+    public String updatePriceToBook(@ModelAttribute @Valid UpdatePriceRequest updatePriceRequest,
+                                    BindingResult bindingResult,
+                                    Model model) {
+        if (bindingResult.hasErrors()) {
+            return "price-not-valid-update";
+        }
         try {
-            Book updatedBook = bookstoreService.addPriceToBook(updatePriceRequest);
+            Book updatedBook = bookstoreService.updatePriceToBook(updatePriceRequest);
             model.addAttribute("updatedBook", updatedBook);
             return "price-updated";
         } catch (ResponseStatusException e) {

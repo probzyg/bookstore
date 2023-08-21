@@ -64,11 +64,11 @@ public class BookstoreService {
     }
 
     
-    public Book addPriceToBook(UpdatePriceRequest updatePriceRequest) {
+    public Book updatePriceToBook(UpdatePriceRequest updatePriceRequest) {
         Book existingBook = bookRepository.findBookByTitle(updatePriceRequest.getTitle());
 
         if (existingBook != null) {
-            existingBook.setPrice(new BigDecimal(updatePriceRequest.getPrice()));
+            existingBook.setPrice(updatePriceRequest.getPrice());
             bookRepository.save(existingBook);
             return existingBook;
         } else {
