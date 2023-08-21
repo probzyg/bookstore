@@ -4,9 +4,11 @@ import com.example.bookstore.domain.Book;
 import com.example.bookstore.request.AddBookRequest;
 import com.example.bookstore.request.UpdatePriceRequest;
 import com.example.bookstore.service.BookstoreService;
+import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 
@@ -26,7 +28,11 @@ public class AdminController {
 
     @PostMapping("/add-book")
     @ResponseStatus(HttpStatus.CREATED)
-    public String addBook(@ModelAttribute AddBookRequest addBookRequest, Model model) {
+    public String addBook(@ModelAttribute @Valid AddBookRequest addBookRequest, BindingResult bindingResult, Model model) {
+        if (bindingResult.hasErrors()) {
+            return "price-not-valid"; // Return to the add book form with validation errors
+        }
+
         try {
             Book newBook = bookstoreService.addBook(addBookRequest);
             model.addAttribute("newBook", newBook);
