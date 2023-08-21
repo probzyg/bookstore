@@ -9,7 +9,7 @@ import org.springframework.data.jpa.repository.Query;
 
 import java.util.List;
 
-public interface BookDatabaseRepository extends JpaRepository<Book, String> {
+public interface BookRepository extends JpaRepository<Book, String> {
     Book findBookByTitle(String title);
 
     Page<Book> findAllByOrderByCreatedAtDesc(Pageable pageable);

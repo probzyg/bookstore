@@ -3,7 +3,7 @@ package com.example.bookstore.controller;
 import com.example.bookstore.domain.Book;
 import com.example.bookstore.request.AddBookRequest;
 import com.example.bookstore.request.UpdatePriceRequest;
-import com.example.bookstore.service.BookstoreDatabaseService;
+import com.example.bookstore.service.BookstoreService;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -12,10 +12,10 @@ import org.springframework.web.server.ResponseStatusException;
 
 @Controller
 public class AdminController {
-    private final BookstoreDatabaseService bookstoreDatabaseService;
+    private final BookstoreService bookstoreService;
 
-    public AdminController(BookstoreDatabaseService bookstoreDatabaseService) {
-        this.bookstoreDatabaseService = bookstoreDatabaseService;
+    public AdminController(BookstoreService bookstoreService) {
+        this.bookstoreService = bookstoreService;
     }
 
     @GetMapping("/add-book")
@@ -28,7 +28,7 @@ public class AdminController {
     @ResponseStatus(HttpStatus.CREATED)
     public String addBook(@ModelAttribute AddBookRequest addBookRequest, Model model) {
         try {
-            Book newBook = bookstoreDatabaseService.addBook(addBookRequest);
+            Book newBook = bookstoreService.addBook(addBookRequest);
             model.addAttribute("newBook", newBook);
             return "book-added";
         } catch (ResponseStatusException e) {
@@ -51,7 +51,7 @@ public class AdminController {
     @PostMapping("/update-price")
     public String addPriceToBook(@ModelAttribute UpdatePriceRequest updatePriceRequest, Model model) {
         try {
-            Book updatedBook = bookstoreDatabaseService.addPriceToBook(updatePriceRequest);
+            Book updatedBook = bookstoreService.addPriceToBook(updatePriceRequest);
             model.addAttribute("updatedBook", updatedBook);
             return "price-updated";
         } catch (ResponseStatusException e) {

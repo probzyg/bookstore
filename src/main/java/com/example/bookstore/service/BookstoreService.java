@@ -2,7 +2,7 @@ package com.example.bookstore.service;
 
 import com.example.bookstore.domain.Book;
 import com.example.bookstore.dto.BookDTO;
-import com.example.bookstore.repository.BookDatabaseRepository;
+import com.example.bookstore.repository.BookRepository;
 import com.example.bookstore.request.AddBookRequest;
 import com.example.bookstore.request.UpdatePriceRequest;
 import org.springframework.data.domain.Page;
@@ -17,23 +17,23 @@ import java.math.BigDecimal;
 import java.util.List;
 
 @Service
-public class BookstoreDatabaseService {
-    private final BookDatabaseRepository bookDatabaseRepository;
+public class BookstoreService {
+    private final BookRepository bookRepository;
 
-    public BookstoreDatabaseService(BookDatabaseRepository bookDatabaseRepository) {
-        this.bookDatabaseRepository = bookDatabaseRepository;
+    public BookstoreService(BookRepository bookRepository) {
+        this.bookRepository = bookRepository;
     }
 
     @Transactional
     public synchronized Book addBook(AddBookRequest addBookRequest) {
         Book newBook = createBook(addBookRequest);
-        if (this.bookDatabaseRepository.findBookByTitle(newBook.getTitle()) != null) {
+        if (this.bookRepository.findBookByTitle(newBook.getTitle()) != null) {
             throw new ResponseStatusException(HttpStatus.CONFLICT, "This book already exists");
         }
         if (validateRequest(addBookRequest)) {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "The values can't be blank!");
         }
-        this.bookDatabaseRepository.save(newBook);
+        this.bookRepository.save(newBook);
         return newBook;
     }
 
@@ -62,21 +62,21 @@ public class BookstoreDatabaseService {
     public Page<Book> getBookPage(int pageNumber, int pageSize) {
         int adjustedPage = pageNumber - 1;
         Pageable pageable = PageRequest.of(adjustedPage, pageSize);
-        return this.bookDatabaseRepository.findAllByOrderByCreatedAtDesc(pageable);
+        return this.bookRepository.findAllByOrderByCreatedAtDesc(pageable);
     }
 
 
     public List<BookDTO> getAllBookWithPrices() {
-        return this.bookDatabaseRepository.findAllBookWithPrices();
+        return this.bookRepository.findAllBookWithPrices();
     }
 
     
     public Book addPriceToBook(UpdatePriceRequest updatePriceRequest) {
-        Book existingBook = bookDatabaseRepository.findBookByTitle(updatePriceRequest.getTitle());
+        Book existingBook = bookRepository.findBookByTitle(updatePriceRequest.getTitle());
 
         if (existingBook != null) {
             existingBook.setPrice(new BigDecimal(updatePriceRequest.getPrice()));
-            bookDatabaseRepository.save(existingBook);
+            bookRepository.save(existingBook);
             return existingBook;
         } else {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, "The book was not found in our database");

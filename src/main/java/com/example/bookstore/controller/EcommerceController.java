@@ -1,7 +1,7 @@
 package com.example.bookstore.controller;
 
 import com.example.bookstore.dto.BookDTO;
-import com.example.bookstore.service.BookstoreDatabaseService;
+import com.example.bookstore.service.BookstoreService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -14,15 +14,15 @@ import java.util.List;
 @Controller
 @RequestMapping("/e-com")
 public class EcommerceController {
-    private final BookstoreDatabaseService bookstoreDatabaseService;
+    private final BookstoreService bookstoreService;
 
-    public EcommerceController(BookstoreDatabaseService bookstoreDatabaseService) {
-        this.bookstoreDatabaseService = bookstoreDatabaseService;
+    public EcommerceController(BookstoreService bookstoreService) {
+        this.bookstoreService = bookstoreService;
     }
 
     @GetMapping
     public String getBooksWithNameAndPrice(Model model) {
-        List<BookDTO> bookDTOs = this.bookstoreDatabaseService.getAllBookWithPrices();
+        List<BookDTO> bookDTOs = this.bookstoreService.getAllBookWithPrices();
         model.addAttribute("books", bookDTOs);
         return "ecom-books";
     }
@@ -30,6 +30,6 @@ public class EcommerceController {
     @GetMapping("/api")
     @ResponseBody
     public List<BookDTO> getBookWithNameAndPriceJSON() {
-        return this.bookstoreDatabaseService.getAllBookWithPrices();
+        return this.bookstoreService.getAllBookWithPrices();
     }
 }
